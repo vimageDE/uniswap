@@ -20,7 +20,10 @@ export enum ChainId {
   BASE = 8453,
   ZORA = 7777777,
   ZORA_SEPOLIA = 999999999,
-  ROOTSTOCK = 30
+  ROOTSTOCK = 30,
+  HARDHAT = 31337,
+  // HAVEN1_TESTNET = 810,
+  // HAVEN1_DEVNET = 8110,
 }
 
 export const SUPPORTED_CHAINS = [
@@ -43,9 +46,12 @@ export const SUPPORTED_CHAINS = [
   ChainId.BASE_GOERLI,
   ChainId.ZORA,
   ChainId.ZORA_SEPOLIA,
-  ChainId.ROOTSTOCK
+  ChainId.ROOTSTOCK,
+  ChainId.HARDHAT,
+  // ChainId.HAVEN1_TESTNET,
+  // ChainId.HAVEN1_DEVNET,
 ] as const
-export type SupportedChainsType = typeof SUPPORTED_CHAINS[number]
+export type SupportedChainsType = (typeof SUPPORTED_CHAINS)[number]
 
 export enum NativeCurrencyName {
   // Strings match input for CLI
@@ -56,5 +62,6 @@ export enum NativeCurrencyName {
   MOONBEAM = 'GLMR',
   BNB = 'BNB',
   AVAX = 'AVAX',
-  ROOTSTOCK = 'RBTC'
+  ROOTSTOCK = 'RBTC',
+  HAVEN1 = 'H1',
 }

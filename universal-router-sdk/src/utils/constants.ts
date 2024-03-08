@@ -99,6 +99,25 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
     weth: '0x4200000000000000000000000000000000000006',
     creationBlock: 9107268,
   },
+  // hardhat
+  [31337]: {
+    router: '0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1',
+    weth: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+    creationBlock: 33,
+  },
+  /*
+  // devnet
+  [8453]: {
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 9107268,
+  },
+  // testnet
+  [8453]: {
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 9107268,
+  },*/
 }
 
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {

@@ -23,8 +23,11 @@ abstract contract DeployUniversalRouter is Script {
     function run() external returns (UniversalRouter router) {
         vm.startBroadcast();
 
+        console2.log('Starting deployment...:');
+
         // deploy permit2 if it isnt yet deployed
         if (params.permit2 == address(0)) {
+            console2.log('Deploying Permit2...:');
             address permit2 = address(new Permit2{salt: SALT}());
             params.permit2 = permit2;
             console2.log('Permit2 Deployed:', address(permit2));
@@ -32,6 +35,7 @@ abstract contract DeployUniversalRouter is Script {
 
         // only deploy unsupported if this chain doesn't already have one
         if (unsupported == address(0)) {
+            console2.log('Deploying UnsupportedProtocol...:');
             unsupported = address(new UnsupportedProtocol());
             console2.log('UnsupportedProtocol deployed:', unsupported);
         }
