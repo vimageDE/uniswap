@@ -1,0 +1,21 @@
+node_modules
+.env
+coverage
+coverage.json
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+#openzeppelin
+.openzeppelin/unknown-31337.json
+.openzeppelin/unknown-1337.json
+
+.DS_Store
+
+# Foundry
+forge-cache/
+out/
+forge-coverage/
+lcov.info
