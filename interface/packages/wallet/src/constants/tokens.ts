@@ -61,7 +61,7 @@ export const USDC_POLYGON = new Token(
 )
 
 export const USDC_GOERLI = new Token(
-  ChainId.Polygon,
+  ChainId.Goerli,
   '0x07865c6e87b9f70255377e024ace6630c1eaa37f',
   6,
   'USDC',

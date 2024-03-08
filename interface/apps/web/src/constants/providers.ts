@@ -33,6 +33,9 @@ export const RPC_PROVIDERS: { [key in SupportedInterfaceChain]: StaticJsonRpcPro
   [ChainId.BNB]: providerFactory(ChainId.BNB),
   [ChainId.AVALANCHE]: providerFactory(ChainId.AVALANCHE),
   [ChainId.BASE]: providerFactory(ChainId.BASE),
+  [ChainId.HARDHAT]: providerFactory(ChainId.HARDHAT),
+  // [ChainId.HAVEN1_DEVNET]: providerFactory(ChainId.HAVEN1_DEVNET),
+  // [ChainId.HAVEN1_TESTNET]: providerFactory(ChainId.HAVEN1_TESTNET),
 }
 
 export const DEPRECATED_RPC_PROVIDERS: { [key in SupportedInterfaceChain]: StaticJsonRpcProvider } = {
@@ -50,4 +53,7 @@ export const DEPRECATED_RPC_PROVIDERS: { [key in SupportedInterfaceChain]: Stati
   [ChainId.BNB]: providerFactory(ChainId.BNB),
   [ChainId.AVALANCHE]: providerFactory(ChainId.AVALANCHE),
   [ChainId.BASE]: providerFactory(ChainId.BASE),
+  [ChainId.HARDHAT]: providerFactory(ChainId.HARDHAT),
+  // [ChainId.HAVEN1_DEVNET]: providerFactory(ChainId.HAVEN1_DEVNET),
+  // [ChainId.HAVEN1_TESTNET]: providerFactory(ChainId.HAVEN1_TESTNET),
 }

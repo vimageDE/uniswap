@@ -1,3 +1,5 @@
+import hardhatTokenList from './tokenLists/hardhat_token_list.json'
+
 export const UNI_LIST = 'https://cloudflare-ipfs.com/ipns/tokens.uniswap.org'
 export const UNI_EXTENDED_LIST = 'https://cloudflare-ipfs.com/ipns/extendedtokens.uniswap.org'
 const UNI_UNSUPPORTED_LIST = 'https://cloudflare-ipfs.com/ipns/unsupportedtokens.uniswap.org'
@@ -26,6 +28,8 @@ export const AVALANCHE_LIST =
   'https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/token_list.json'
 export const BASE_LIST =
   'https://raw.githubusercontent.com/ethereum-optimism/ethereum-optimism.github.io/master/optimism.tokenlist.json'
+
+export const HARDHAT_LIST = hardhatTokenList
 
 export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST, UNI_UNSUPPORTED_LIST]
 

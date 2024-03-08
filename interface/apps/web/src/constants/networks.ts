@@ -123,6 +123,9 @@ export const FALLBACK_URLS = {
     'https://1rpc.io/base',
     'https://base.meowrpc.com',
   ],
+  [ChainId.HARDHAT]: [`http://127.0.0.1:8545/`],
+  // [ChainId.HAVEN1_DEVNET]: [`https://rpc.staging.haven1.org/`],
+  // [ChainId.HAVEN1_TESTNET]: [`https://testnet-rpc.haven1.org/`],
 }
 
 /**
@@ -161,4 +164,7 @@ export const RPC_URLS = {
   [ChainId.BNB]: [QUICKNODE_BNB_RPC_URL, ...FALLBACK_URLS[ChainId.BNB]],
   [ChainId.AVALANCHE]: [`https://avalanche-mainnet.infura.io/v3/${INFURA_KEY}`, ...FALLBACK_URLS[ChainId.AVALANCHE]],
   [ChainId.BASE]: [`https://base-mainnet.infura.io/v3/${INFURA_KEY}`, ...FALLBACK_URLS[ChainId.BASE]],
+  [ChainId.HARDHAT]: [...FALLBACK_URLS[ChainId.HARDHAT]],
+  // [ChainId.HAVEN1_DEVNET]: [...FALLBACK_URLS[ChainId.HAVEN1_DEVNET]],
+  // [ChainId.HAVEN1_TESTNET]: [...FALLBACK_URLS[ChainId.HAVEN1_TESTNET]],
 }

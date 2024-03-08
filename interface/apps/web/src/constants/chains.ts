@@ -15,6 +15,9 @@ export const CHAIN_IDS_TO_NAMES = {
   [ChainId.BNB]: 'bnb',
   [ChainId.AVALANCHE]: 'avalanche',
   [ChainId.BASE]: 'base',
+  [ChainId.HARDHAT]: 'hardhat',
+  // [ChainId.HAVEN1_DEVNET]: 'haven1_devnet',
+  // [ChainId.HAVEN1_TESTNET]: 'haven1_testnet',
 } as const
 
 // Include ChainIds in this array if they are not supported by the UX yet, but are already in the SDK.
@@ -75,6 +78,9 @@ export const TESTNET_CHAIN_IDS = [
   ChainId.ARBITRUM_GOERLI,
   ChainId.OPTIMISM_GOERLI,
   ChainId.CELO_ALFAJORES,
+  ChainId.HARDHAT,
+  // ChainId.HAVEN1_DEVNET,
+  //ChainId.HAVEN1_TESTNET,
 ] as const
 
 /**
@@ -137,8 +143,13 @@ export function getChainPriority(chainId: ChainId): number {
     case ChainId.CELO:
     case ChainId.CELO_ALFAJORES:
       return 7
-    default:
+    case ChainId.HARDHAT:
       return 8
+    // case ChainId.HAVEN1_DEVNET:
+    // case ChainId.HAVEN1_TESTNET:
+    //   return 9
+    default:
+      return 9
   }
 }
 

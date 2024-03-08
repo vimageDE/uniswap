@@ -16,6 +16,7 @@ import {
   DAI_OPTIMISM,
   DAI_POLYGON,
   ETH_BSC,
+  LINK_Hardhat,
   OP,
   PORTAL_ETH_CELO,
   USDC_ARBITRUM,
@@ -23,6 +24,7 @@ import {
   USDC_AVALANCHE,
   USDC_BASE,
   USDC_BSC,
+  USDC_HARDHAT,
   USDC_CELO,
   USDC_MAINNET,
   USDC_OPTIMISM,
@@ -38,13 +40,14 @@ import {
   WBTC,
   WBTC_ARBITRUM_ONE,
   WBTC_CELO,
+  WBTC_Hardhat,
   WBTC_OPTIMISM,
   WBTC_POLYGON,
   WETH_AVALANCHE,
   WETH_POLYGON,
   WETH_POLYGON_MUMBAI,
   WRAPPED_NATIVE_CURRENCY,
-  nativeOnChain,
+nativeOnChain,
 } from './tokens'
 
 type ChainTokenList = {
@@ -72,6 +75,13 @@ export const COMMON_BASES: ChainCurrencyList = {
     USDT,
     WBTC,
     WRAPPED_NATIVE_CURRENCY[ChainId.MAINNET] as Token,
+  ],
+  [ChainId.HARDHAT]: [
+    nativeOnChain(ChainId.HARDHAT),
+    USDC_HARDHAT,
+    WBTC_Hardhat,
+    LINK_Hardhat,
+    WRAPPED_NATIVE_CURRENCY[ChainId.HARDHAT] as Token,
   ],
   [ChainId.GOERLI]: [nativeOnChain(ChainId.GOERLI), WRAPPED_NATIVE_CURRENCY[ChainId.GOERLI] as Token],
   [ChainId.SEPOLIA]: [nativeOnChain(ChainId.SEPOLIA), WRAPPED_NATIVE_CURRENCY[ChainId.SEPOLIA] as Token],
@@ -137,6 +147,7 @@ export const COMMON_BASES: ChainCurrencyList = {
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WRAPPED_NATIVE_CURRENCIES_ONLY,
   [ChainId.MAINNET]: [...WRAPPED_NATIVE_CURRENCIES_ONLY[ChainId.MAINNET], DAI, USDC_MAINNET, USDT, WBTC],
+  [ChainId.HARDHAT]: [...WRAPPED_NATIVE_CURRENCIES_ONLY[ChainId.HARDHAT], USDC_HARDHAT, WBTC_Hardhat, LINK_Hardhat],
   [ChainId.BNB]: [
     ...WRAPPED_NATIVE_CURRENCIES_ONLY[ChainId.BNB],
     DAI_BSC,

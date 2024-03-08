@@ -14,6 +14,9 @@ import { ReactComponent as celoLight } from './ChainSymbols/celo_light.svg'
 import { ReactComponent as ethereum } from './ChainSymbols/ethereum.svg'
 import { ReactComponent as optimism } from './ChainSymbols/optimism.svg'
 import { ReactComponent as polygon } from './ChainSymbols/polygon.svg'
+import { ReactComponent as hardhat } from './ChainSymbols/polygon.svg'
+// import { ReactComponent as haven_devnet } from './ChainSymbols/polygon.svg'
+// import { ReactComponent as haven_testnet } from './ChainSymbols/polygon.svg'
 
 type SVG = FunctionComponent<React.SVGProps<SVGSVGElement>>
 type ChainUI = { Symbol: SVG; bgColor: string; textColor: string }
@@ -80,6 +83,12 @@ export function getChainUI(chainId: ChainId, darkMode: boolean): ChainUI | undef
         Symbol: base,
         bgColor: '#0052FF33',
         textColor: '#0052FF',
+      }
+    case ChainId.HARDHAT:
+      return {
+        Symbol: hardhat,
+        bgColor: '#6B8AFF33',
+        textColor: '#6B8AFF',
       }
     default:
       return undefined

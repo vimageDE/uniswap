@@ -1,4 +1,4 @@
-import { ChainId, Currency, NativeCurrency, Token, UNI_ADDRESSES, WETH9 } from '@uniswap/sdk-core'
+import { ChainId, Currency, Ether, NativeCurrency, Token, UNI_ADDRESSES, WETH9 } from '@uniswap/sdk-core'
 import invariant from 'tiny-invariant'
 
 export const NATIVE_CHAIN_ID = 'NATIVE'
@@ -9,6 +9,27 @@ export const USDC_MAINNET = new Token(
   6,
   'USDC',
   'USD//C'
+)
+export const USDC_HARDHAT = new Token(
+  ChainId.HARDHAT,
+  '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+  6,
+  'USDC',
+  'USD//C'
+)
+export const WBTC_Hardhat = new Token(
+  ChainId.HARDHAT,
+  '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
+  8,
+  'WBTC',
+  'Wrapped BTC'
+)
+export const LINK_Hardhat = new Token(
+  ChainId.HARDHAT,
+  '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9',
+  18,
+  'Link',
+  'Chainlink'
 )
 const USDC_GOERLI = new Token(ChainId.GOERLI, '0x07865c6e87b9f70255377e024ace6630c1eaa37f', 6, 'USDC', 'USD//C')
 const USDC_SEPOLIA = new Token(ChainId.SEPOLIA, '0x6f14C02Fc1F78322cFd7d707aB90f18baD3B54f5', 6, 'USDC', 'USD//C')
@@ -262,6 +283,13 @@ export const MNW = new Token(
 
 export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } = {
   ...(WETH9 as Record<ChainId, Token>),
+  [ChainId.HARDHAT]: new Token(
+    ChainId.HARDHAT,
+    '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.OPTIMISM]: new Token(
     ChainId.OPTIMISM,
     '0x4200000000000000000000000000000000000006',
@@ -355,6 +383,10 @@ export function isPolygon(chainId: number): chainId is ChainId.POLYGON | ChainId
   return chainId === ChainId.POLYGON_MUMBAI || chainId === ChainId.POLYGON
 }
 
+export function isHardhat(chainId: number): chainId is ChainId.HARDHAT {
+  return chainId === ChainId.HARDHAT
+}
+
 class PolygonNativeCurrency extends NativeCurrency {
   equals(other: Currency): boolean {
     return other.isNative && other.chainId === this.chainId
@@ -375,6 +407,24 @@ class PolygonNativeCurrency extends NativeCurrency {
 
 export function isBsc(chainId: number): chainId is ChainId.BNB {
   return chainId === ChainId.BNB
+}
+
+class HarhdatNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId
+  }
+
+  get wrapped(): Token {
+    if (!isHardhat(this.chainId)) throw new Error('Not hardhat')
+    const wrapped = WRAPPED_NATIVE_CURRENCY[this.chainId]
+    invariant(wrapped instanceof Token)
+    return wrapped
+  }
+
+  public constructor(chainId: number) {
+    if (!isHardhat(chainId)) throw new Error('Not hardhat')
+    super(chainId, 18, 'ETH', 'Ether')
+  }
 }
 
 class BscNativeCurrency extends NativeCurrency {
@@ -451,6 +501,8 @@ export function nativeOnChain(chainId: number): NativeCurrency | Token {
     nativeCurrency = new BscNativeCurrency(chainId)
   } else if (isAvalanche(chainId)) {
     nativeCurrency = new AvaxNativeCurrency(chainId)
+  } else if (isHardhat(chainId)) {
+    nativeCurrency = new HarhdatNativeCurrency(chainId)
   } else {
     nativeCurrency = ExtendedEther.onChain(chainId)
   }
@@ -473,33 +525,8 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in ChainId]?: s
     [ChainId.GOERLI]: USDC_GOERLI.address,
     [ChainId.SEPOLIA]: USDC_SEPOLIA.address,
     [ChainId.AVALANCHE]: USDC_AVALANCHE.address,
+    [ChainId.HARDHAT]: USDC_HARDHAT.address,
+    // [ChainId.HAVEN1_DEVNET]: USDC_HAVEN1_DEVNET.address,
+    // [ChainId.HAVEN1_TESTNET]: USDC_HAVEN1_TESTNET.address,
   },
-}
-
-const STABLECOINS: { [chainId in ChainId]: Token[] } = {
-  [ChainId.MAINNET]: [USDC_MAINNET, DAI, USDT],
-  [ChainId.ARBITRUM_ONE]: [USDC_ARBITRUM, DAI_ARBITRUM_ONE],
-  [ChainId.ARBITRUM_GOERLI]: [USDC_ARBITRUM_GOERLI],
-  [ChainId.OPTIMISM]: [USDC_OPTIMISM, DAI_OPTIMISM],
-  [ChainId.OPTIMISM_GOERLI]: [USDC_OPTIMISM_GOERLI],
-  [ChainId.POLYGON]: [USDC_POLYGON, DAI_POLYGON],
-  [ChainId.POLYGON_MUMBAI]: [USDC_POLYGON_MUMBAI],
-  [ChainId.BNB]: [USDC_BSC],
-  [ChainId.BASE]: [USDC_BASE],
-  [ChainId.CELO]: [USDC_CELO],
-  [ChainId.CELO_ALFAJORES]: [USDC_CELO],
-  [ChainId.GOERLI]: [USDC_GOERLI],
-  [ChainId.SEPOLIA]: [USDC_SEPOLIA],
-  [ChainId.AVALANCHE]: [USDC_AVALANCHE],
-  [ChainId.GNOSIS]: [],
-  [ChainId.MOONBEAM]: [],
-  [ChainId.BASE_GOERLI]: [],
-  [ChainId.OPTIMISM_SEPOLIA]: [USDC_SEPOLIA],
-  [ChainId.ARBITRUM_SEPOLIA]: [],
-}
-
-export function isStablecoin(currency?: Currency): boolean {
-  if (!currency) return false
-
-  return STABLECOINS[currency.chainId as ChainId].some((stablecoin) => stablecoin.equals(currency))
 }

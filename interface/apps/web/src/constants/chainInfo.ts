@@ -212,6 +212,19 @@ const CHAIN_INFO: ChainInfoMap = {
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     color: darkTheme.chain_84531,
   },
+  [ChainId.HARDHAT]: {
+    networkType: NetworkType.L1,
+    blockWaitMsBeforeWarning: ms(`25m`),
+    bridge: 'https://bridge.base.org/deposit',
+    // defaultListUrl: HARDHAT_LIST,
+    docs: 'https://docs.haven1.org',
+    explorer: 'https://testnet-explorer.haven1.org/',
+    infoLink: 'https://info.uniswap.org/#/base/',
+    label: 'Hardhat',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    color: darkTheme.chain_43114,
+    backgroundColor: darkTheme.chain_43114_background,
+  },
 } as const
 
 export function getChainInfo(
