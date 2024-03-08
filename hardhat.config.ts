@@ -6,7 +6,14 @@ require('dotenv').config();
 
 const baseConfig: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
-  networks: {},
+  networks: {
+    hardhat: {
+      mining: {
+        auto: false, // Disable automatic mining
+        interval: 5000, // Set mining interval to 5 seconds
+      },
+    },
+  },
   solidity: {
     compilers: [
       {
@@ -49,6 +56,16 @@ const networks = () => {
         url: 'https://mainnet.infura.io/v3/' + process.env.INFURA_TOKEN,
         accounts: {
           mnemonic: process.env.MNEMONIC as string,
+        },
+      },
+    };
+  } else if (process.env.ENV === 'ganache') {
+    return {
+      ...baseConfig.networks,
+      ganache: {
+        url: 'http://127.0.0.1:8545',
+        accounts: {
+          mnemonic: process.env.MNEMONIC_GANACHE as string,
         },
       },
     };
