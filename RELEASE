@@ -1,0 +1,24 @@
+IPFS hash of the deployment:
+- CIDv0: `QmTFgNJaQqAaTCCyb3Zvz9jyLpQfB9Xh25WcvebZz6G1Pd`
+- CIDv1: `bafybeicjart6xnqnhn2wxxtaygvl327ad3dtufggocex2pczejucjiwhna`
+
+The latest release is always mirrored at [app.uniswap.org](https://app.uniswap.org).
+
+You can also access the Uniswap Interface from an IPFS gateway.
+**BEWARE**: The Uniswap interface uses [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to remember your settings, such as which tokens you have imported.
+**You should always use an IPFS gateway that enforces origin separation**, or our hosted deployment of the latest release at [app.uniswap.org](https://app.uniswap.org).
+Your Uniswap settings are never remembered across different URLs.
+
+IPFS gateways:
+- https://bafybeicjart6xnqnhn2wxxtaygvl327ad3dtufggocex2pczejucjiwhna.ipfs.dweb.link/
+- https://bafybeicjart6xnqnhn2wxxtaygvl327ad3dtufggocex2pczejucjiwhna.ipfs.cf-ipfs.com/
+- [ipfs://QmTFgNJaQqAaTCCyb3Zvz9jyLpQfB9Xh25WcvebZz6G1Pd/](ipfs://QmTFgNJaQqAaTCCyb3Zvz9jyLpQfB9Xh25WcvebZz6G1Pd/)
+
+### 5.17.1 (2024-03-07)
+
+
+### Bug Fixes
+
+* **web:** [info] Update PDP TX Table on token order switch (#6772) (#6775) 685bb6d
+
+

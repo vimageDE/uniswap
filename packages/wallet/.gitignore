@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+THUMBS_DB
+tsconfig.tsbuildinfo
+
+# generated graphql and api files
+src/**/__generated__
