@@ -1,4 +1,4 @@
-import { ChainId, Currency, Ether, NativeCurrency, Token, UNI_ADDRESSES, WETH9 } from '@uniswap/sdk-core'
+import { ChainId, Currency, NativeCurrency, Token, UNI_ADDRESSES, WETH9 } from '@uniswap/sdk-core'
 import invariant from 'tiny-invariant'
 
 export const NATIVE_CHAIN_ID = 'NATIVE'
@@ -31,8 +31,14 @@ export const LINK_Hardhat = new Token(
   'Link',
   'Chainlink'
 )
-const USDC_GOERLI = new Token(ChainId.GOERLI, '0x07865c6e87b9f70255377e024ace6630c1eaa37f', 6, 'USDC', 'USD//C')
-const USDC_SEPOLIA = new Token(ChainId.SEPOLIA, '0x6f14C02Fc1F78322cFd7d707aB90f18baD3B54f5', 6, 'USDC', 'USD//C')
+export const USDC_GOERLI = new Token(ChainId.GOERLI, '0x07865c6e87b9f70255377e024ace6630c1eaa37f', 6, 'USDC', 'USD//C')
+export const USDC_SEPOLIA = new Token(
+  ChainId.SEPOLIA,
+  '0x6f14C02Fc1F78322cFd7d707aB90f18baD3B54f5',
+  6,
+  'USDC',
+  'USD//C'
+)
 export const USDC_OPTIMISM = new Token(
   ChainId.OPTIMISM,
   '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
@@ -529,4 +535,33 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in ChainId]?: s
     // [ChainId.HAVEN1_DEVNET]: USDC_HAVEN1_DEVNET.address,
     // [ChainId.HAVEN1_TESTNET]: USDC_HAVEN1_TESTNET.address,
   },
+}
+
+const STABLECOINS: { [chainId in ChainId]: Token[] } = {
+  [ChainId.MAINNET]: [USDC_MAINNET, DAI, USDT],
+  [ChainId.ARBITRUM_ONE]: [USDC_ARBITRUM, DAI_ARBITRUM_ONE],
+  [ChainId.ARBITRUM_GOERLI]: [USDC_ARBITRUM_GOERLI],
+  [ChainId.OPTIMISM]: [USDC_OPTIMISM, DAI_OPTIMISM],
+  [ChainId.OPTIMISM_GOERLI]: [USDC_OPTIMISM_GOERLI],
+  [ChainId.POLYGON]: [USDC_POLYGON, DAI_POLYGON],
+  [ChainId.POLYGON_MUMBAI]: [USDC_POLYGON_MUMBAI],
+  [ChainId.BNB]: [USDC_BSC],
+  [ChainId.BASE]: [USDC_BASE],
+  [ChainId.CELO]: [USDC_CELO],
+  [ChainId.CELO_ALFAJORES]: [USDC_CELO],
+  [ChainId.GOERLI]: [USDC_GOERLI],
+  [ChainId.SEPOLIA]: [USDC_SEPOLIA],
+  [ChainId.AVALANCHE]: [USDC_AVALANCHE],
+  [ChainId.GNOSIS]: [],
+  [ChainId.MOONBEAM]: [],
+  [ChainId.BASE_GOERLI]: [],
+  [ChainId.OPTIMISM_SEPOLIA]: [USDC_SEPOLIA],
+  [ChainId.ARBITRUM_SEPOLIA]: [],
+  [ChainId.HARDHAT]: [USDC_HARDHAT],
+}
+
+export function isStablecoin(currency?: Currency): boolean {
+  if (!currency) return false
+
+  return STABLECOINS[currency.chainId as ChainId].some((stablecoin) => stablecoin.equals(currency))
 }

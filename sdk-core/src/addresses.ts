@@ -11,6 +11,7 @@ type ChainAddresses = {
   tickLensAddress?: string
   swapRouter02Address?: string
   v1MixedRouteQuoterAddress?: string
+  feeAddress?: string
 }
 
 const DEFAULT_NETWORKS = [ChainId.MAINNET, ChainId.GOERLI, ChainId.SEPOLIA]
@@ -76,6 +77,39 @@ const MAINNET_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
   v1MixedRouteQuoterAddress: '0x84E44095eeBfEC7793Cd7d5b57B7e401D7f1cA2E'
 }
+
+/*
+// Haven1 addresses
+const HAVEN1_DEVNET_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '',
+  multicallAddress: '',
+  quoterAddress: '',
+  v3MigratorAddress: '',
+  nonfungiblePositionManagerAddress: '',
+  tickLensAddress: '',
+  feeAddress: ''
+}
+
+const HAVEN1_TESTNET_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '',
+  multicallAddress: '',
+  quoterAddress: '',
+  v3MigratorAddress: '',
+  nonfungiblePositionManagerAddress: '',
+  tickLensAddress: '',
+  feeAddress: ''
+} */
+
+const HARDHAT_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  multicallAddress: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
+  quoterAddress: '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e',
+  v3MigratorAddress: '0x8A791620dd6260079BF849Dc5567aDC3F2FdC318',
+  nonfungiblePositionManagerAddress: '0x0165878A594ca255338adfa4d48449f69242Eb8F',
+  tickLensAddress: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
+  feeAddress: ''
+}
+
 const GOERLI_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
   v1MixedRouteQuoterAddress: '0xBa60b6e6fF25488308789E6e0A65D838be34194e'
@@ -212,7 +246,10 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
   [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES,
   [ChainId.BASE]: BASE_ADDRESSES,
-  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES
+  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES,
+  [ChainId.HARDHAT]: HARDHAT_ADDRESSES
+  // [ChainId.HAVEN1_TESTNET]: HAVEN1_TESTNET_ADDRESSES,
+  // [ChainId.HAVEN1_DEVNET]: HAVEN1_DEVNET_ADDRESSES,
 }
 
 /* V3 Contract Addresses */

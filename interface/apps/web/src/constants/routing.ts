@@ -24,8 +24,8 @@ import {
   USDC_AVALANCHE,
   USDC_BASE,
   USDC_BSC,
-  USDC_HARDHAT,
   USDC_CELO,
+  USDC_HARDHAT,
   USDC_MAINNET,
   USDC_OPTIMISM,
   USDC_OPTIMISM_GOERLI,
@@ -47,7 +47,7 @@ import {
   WETH_POLYGON,
   WETH_POLYGON_MUMBAI,
   WRAPPED_NATIVE_CURRENCY,
-nativeOnChain,
+  nativeOnChain,
 } from './tokens'
 
 type ChainTokenList = {
