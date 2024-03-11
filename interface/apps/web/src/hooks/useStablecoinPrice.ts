@@ -11,6 +11,7 @@ import {
   USDC_ARBITRUM,
   USDC_AVALANCHE,
   USDC_BASE,
+  USDC_HARDHAT,
   USDC_MAINNET,
   USDC_POLYGON,
   USDT_BSC,
@@ -27,6 +28,7 @@ export const STABLECOIN_AMOUNT_OUT: { [chainId: number]: CurrencyAmount<Token> }
   [ChainId.BNB]: CurrencyAmount.fromRawAmount(USDT_BSC, 100e18),
   [ChainId.AVALANCHE]: CurrencyAmount.fromRawAmount(USDC_AVALANCHE, 10_000e6),
   [ChainId.BASE]: CurrencyAmount.fromRawAmount(USDC_BASE, 10_000e6),
+  [ChainId.HARDHAT]: CurrencyAmount.fromRawAmount(USDC_HARDHAT, 10_000e6),
 }
 
 /**
