@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ~/.nvm/nvm.sh
 # Step 0: Set yarn and node version
 nvm use 18
 yarn set version 3.2.3

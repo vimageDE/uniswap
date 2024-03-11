@@ -47,5 +47,6 @@
     "@openzeppelin/contracts": "^4.8.3",
     "@openzeppelin/contracts-upgradeable": "^4.8.3",
     "deploy-v3": "^1.0.6"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
