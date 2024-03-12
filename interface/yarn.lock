@@ -13323,7 +13323,7 @@ __metadata:
     "@uniswap/merkle-distributor": 1.0.1
     "@uniswap/permit2-sdk": 1.2.0
     "@uniswap/redux-multicall": 1.1.8
-    "@uniswap/router-sdk": "file:../../../router-sdk"
+    "@uniswap/router-sdk": 1.8.0
     "@uniswap/sdk-core": "file:../../../sdk-core"
     "@uniswap/smart-order-router": 3.17.3
     "@uniswap/token-lists": 1.0.0-beta.33
@@ -13552,7 +13552,7 @@ __metadata:
     "@uniswap/analytics-events": 2.31.0
     "@uniswap/eslint-config": "workspace:^"
     "@uniswap/ethers-rs-mobile": 0.0.5
-    "@uniswap/sdk-core": 4.1.2
+    "@uniswap/sdk-core": "file:../../../sdk-core-4.2.0"
     "@uniswap/v3-sdk": 3.10.2
     "@walletconnect/core": 2.11.2
     "@walletconnect/react-native-compat": 2.11.2
@@ -13679,19 +13679,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/router-sdk@file:../../../router-sdk::locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb":
-  version: 1.9.0
-  resolution: "@uniswap/router-sdk@file:../../../router-sdk#../../../router-sdk::hash=6086d3&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
-  dependencies:
-    "@ethersproject/abi": ^5.5.0
-    "@uniswap/sdk-core": "file:../sdk-core"
-    "@uniswap/swap-router-contracts": ^1.1.0
-    "@uniswap/v2-sdk": ^4.3.0
-    "@uniswap/v3-sdk": ^3.11.0
-  checksum: 253e046a49cbf3f217b54cf79ea2d95802bd993f43d0629c539f5288294733fd8860e319b008e24a2e0d20c8fbe1d606b99cba379bc8a4a86edd25608b3880b4
-  languageName: node
-  linkType: hard
-
 "@uniswap/router-sdk@npm:1.8.0, @uniswap/router-sdk@npm:^1.6.0, @uniswap/router-sdk@npm:^1.8.0":
   version: 1.8.0
   resolution: "@uniswap/router-sdk@npm:1.8.0"
@@ -13707,7 +13694,7 @@ __metadata:
 
 "@uniswap/sdk-core@file:../sdk-core::locator=universe%40workspace%3A.":
   version: 4.1.3
-  resolution: "@uniswap/sdk-core@file:../sdk-core#../sdk-core::hash=ec5123&locator=universe%40workspace%3A."
+  resolution: "@uniswap/sdk-core@file:../sdk-core#../sdk-core::hash=37a2a1&locator=universe%40workspace%3A."
   dependencies:
     "@ethersproject/address": ^5.0.2
     big.js: ^5.2.2
@@ -13715,7 +13702,7 @@ __metadata:
     jsbi: ^3.1.4
     tiny-invariant: ^1.1.0
     toformat: ^2.0.0
-  checksum: 633215d27a1dc41db2ebe9699531b076271530c16f4a40c35b56955a5f1903c0d057e1000f10d8da325f1c3d8b4ffa5895328db3a8a88feab074232b8baaba53
+  checksum: fbd54f127ffb6646bcc538bdedfd856e134e48a6384a207a48b20180be5d7e87d8119ea6e97d0cadba6a709adc1e3790e960138711154151741b27f9a03e0ecd
   languageName: node
   linkType: hard
 
@@ -13787,7 +13774,7 @@ __metadata:
 
 "@uniswap/universal-router-sdk@file:../../../universal-router-sdk::locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb":
   version: 1.7.1
-  resolution: "@uniswap/universal-router-sdk@file:../../../universal-router-sdk#../../../universal-router-sdk::hash=dd159b&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
+  resolution: "@uniswap/universal-router-sdk@file:../../../universal-router-sdk#../../../universal-router-sdk::hash=a0e226&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
   dependencies:
     "@uniswap/permit2-sdk": ^1.2.0
     "@uniswap/router-sdk": ^1.8.0
@@ -13797,7 +13784,7 @@ __metadata:
     "@uniswap/v3-sdk": ^3.10.1
     bignumber.js: ^9.0.2
     ethers: ^5.3.1
-  checksum: 82aae152428017674fe25a3c023a11f2e917f6c17eee471c75129cd58f1e1170c5366981c5bec1df6d74b9a36d9bc5fbb3e226c4eb8c5548a12bfabfca9767b6
+  checksum: 8b2694fa05aabfbe652d337199b1baf335c341a70f7315a618f4a114449445f4a2faad4c9f151bb8fa1ff9f87225b08dbc66ce4d974a5cae791268603d03f912
   languageName: node
   linkType: hard
 
@@ -13905,22 +13892,6 @@ __metadata:
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
   checksum: 187c34255fc082f8d424bd6e5faba825cd8dda01a9ae1d3a4377c4f11cec123562426afedff8c0513ad86f4458f37ee4ef8a186b86a087b8bd2736d74402cc92
-  languageName: node
-  linkType: hard
-
-"@uniswap/v3-sdk@npm:^3.11.0":
-  version: 3.11.0
-  resolution: "@uniswap/v3-sdk@npm:3.11.0"
-  dependencies:
-    "@ethersproject/abi": ^5.0.12
-    "@ethersproject/solidity": ^5.0.9
-    "@uniswap/sdk-core": ^4.2.0
-    "@uniswap/swap-router-contracts": ^1.2.1
-    "@uniswap/v3-periphery": ^1.1.1
-    "@uniswap/v3-staker": 1.0.0
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  checksum: 35850a2f171ece5de27ab5066f983fdbc806b08b7a0db03c27b1fe4502176ab44136427f7b2a41c7476ec2b80398a9d74b5397f5d7bc35d174f888458e491a57
   languageName: node
   linkType: hard
 

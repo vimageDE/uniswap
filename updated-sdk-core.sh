@@ -8,6 +8,11 @@ yarn set version 1.22.19
 yarn install
 yarn build
 echo '---installed and build sdk-core---'
+cd ../sdk-core-4.2.0
+
+yarn install
+yarn build
+echo '---installed and build sdk-core-4.2.0---'
 
 sleep 4
 
@@ -34,4 +39,6 @@ yarn set version 3.2.3
 
 yarn install
 echo '---installed interface---'
+yarn g:build
+echo '---build interface---'
 
