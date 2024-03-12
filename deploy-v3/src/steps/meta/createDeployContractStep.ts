@@ -40,6 +40,8 @@ export default function createDeployContractStep({
 
       let contract: Contract
       try {
+        const txCount = await config.signer.getTransactionCount()
+        console.log('Transaction count:', txCount)
         contract = await factory.deploy(...constructorArgs, { gasPrice: config.gasPrice })
       } catch (error) {
         console.error(`Failed to deploy ${contractName}`)

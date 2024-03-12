@@ -100,6 +100,7 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 const network = await wethContract.provider.getNetwork()
+                console.log('This is the network: ', network)
                 if (
                   network.chainId !== chainId ||
                   wethContract.address !== WRAPPED_NATIVE_CURRENCY[network.chainId]?.address

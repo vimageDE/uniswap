@@ -101,12 +101,12 @@ const HAVEN1_TESTNET_ADDRESSES: ChainAddresses = {
 } */
 
 const HARDHAT_ADDRESSES: ChainAddresses = {
-  v3CoreFactoryAddress: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
-  multicallAddress: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
-  quoterAddress: '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e',
-  v3MigratorAddress: '0x8A791620dd6260079BF849Dc5567aDC3F2FdC318',
-  nonfungiblePositionManagerAddress: '0x0165878A594ca255338adfa4d48449f69242Eb8F',
-  tickLensAddress: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
+  v3CoreFactoryAddress: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+  multicallAddress: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
+  quoterAddress: '0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1',
+  v3MigratorAddress: '0x9A676e781A523b5d0C0e43731313A708CB607508',
+  nonfungiblePositionManagerAddress: '0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82',
+  tickLensAddress: '0x8A791620dd6260079BF849Dc5567aDC3F2FdC318',
   feeAddress: ''
 }
 
