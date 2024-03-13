@@ -469,16 +469,16 @@ export const USDC_BASE = new Token(
   6,
   'USDbC',
   'USD Base Coin'
-)
+);
 
-// Base Goerli Tokens 
+// Base Goerli Tokens
 export const USDC_BASE_GOERLI = new Token(
   ChainId.BASE_GOERLI,
   '0x853154e2A5604E5C74a2546E2871Ad44932eB92C',
   6,
   'USDbC',
   'USD Base Coin'
-)
+);
 
 // Gnosis Tokens
 export const USDC_ETHEREUM_GNOSIS = new Token(
@@ -536,6 +536,15 @@ export const WBTC_MOONBEAM = new Token(
   8,
   'WBTC',
   'Wrapped BTC bridged using Multichain'
+);
+
+// Hardhat
+export const USDC_HARDHAT = new Token(
+  ChainId.HARDHAT,
+  '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+  6,
+  'USDC',
+  'USD//C'
 );
 
 export class TokenProvider implements ITokenProvider {
@@ -640,7 +649,7 @@ export class TokenProvider implements ITokenProvider {
     const symbolToToken: { [symbol: string]: Token } = {};
 
     const addresses = _(_addresses)
-      .map((address) => address.toLowerCase())
+      .map((address: string) => address.toLowerCase())
       .uniq()
       .value();
 
@@ -795,6 +804,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.HARDHAT:
+      return USDC_HARDHAT;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

@@ -22,6 +22,7 @@ import {
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
+  USDC_HARDHAT,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_OPTIMISM,
@@ -74,6 +75,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BNB]: [USDT_BNB, USDC_BNB, DAI_BNB],
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
+  [ChainId.HARDHAT]: [USDC_HARDHAT],
 };
 
 export type L1ToL2GasCosts = {
@@ -170,10 +172,10 @@ export abstract class IOnChainGasModelFactory {
   public abstract buildGasModel({
     chainId,
     gasPriceWei,
-    pools: LiquidityCalculationPools,
+    pools,
     amountToken,
     quoteToken,
-    v2poolProvider: V2poolProvider,
+    v2poolProvider,
     l2GasDataProvider,
     providerConfig,
   }: BuildOnChainGasModelFactoryType): Promise<

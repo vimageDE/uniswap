@@ -27,10 +27,11 @@
   "license": "MIT",
   "dependencies": {
     "@ethersproject/abi": "^5.5.0",
-    "@uniswap/sdk-core": "^4.0.7",
+    "@uniswap/sdk-core": "file:../sdk-core",
     "@uniswap/swap-router-contracts": "^1.1.0",
     "@uniswap/v2-sdk": "^4.1.0",
-    "@uniswap/v3-sdk": "^3.10.1"
+    "@uniswap/v3-sdk": "file:../v3-sdk",
+    "jsbi": "3.1.4"
   },
   "devDependencies": {
     "@types/jest": "^24.0.25",
@@ -41,5 +42,8 @@
     "printWidth": 120,
     "semi": false,
     "singleQuote": true
+  },
+  "resolutions": {
+    "**/@uniswap/sdk-core": "4.1.3"
   }
 }

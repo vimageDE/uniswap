@@ -11,13 +11,13 @@ import {
   USDC_AVAX,
   USDC_BASE,
   USDC_BNB,
+  USDC_HARDHAT,
   USDC_MAINNET,
   USDT_BNB,
   USDT_MAINNET,
   WBTC_MAINNET,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
-
 } from '../../providers/token-provider';
 import { WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
 
@@ -60,9 +60,23 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
       USDT_BNB,
       BTC_BNB,
     ],
-    [ChainId.AVALANCHE]: [WRAPPED_NATIVE_CURRENCY[ChainId.AVALANCHE]!, USDC_AVAX, DAI_AVAX],
+    [ChainId.AVALANCHE]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.AVALANCHE]!,
+      USDC_AVAX,
+      DAI_AVAX,
+    ],
     [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE]!, USDC_BASE],
     [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]!],
+    [ChainId.HARDHAT]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.HARDHAT]!,
+      USDC_HARDHAT,
+    ],
+    [ChainId.OPTIMISM_SEPOLIA]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_SEPOLIA],
+    ],
+    [ChainId.ARBITRUM_SEPOLIA]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA],
+    ],
   };
 };
 

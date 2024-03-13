@@ -36,12 +36,15 @@ import { buildTrade } from './methodParameters';
 export async function getV2NativePool(
   token: Token,
   poolProvider: IV2PoolProvider,
-  providerConfig?: ProviderConfig,
+  providerConfig?: ProviderConfig
 ): Promise<Pair | null> {
   const chainId = token.chainId as ChainId;
   const weth = WRAPPED_NATIVE_CURRENCY[chainId]!;
 
-  const poolAccessor = await poolProvider.getPools([[weth, token]], providerConfig);
+  const poolAccessor = await poolProvider.getPools(
+    [[weth, token]],
+    providerConfig
+  );
   const pool = poolAccessor.getPool(weth, token);
 
   if (!pool || pool.reserve0.equalTo(0) || pool.reserve1.equalTo(0)) {
@@ -177,7 +180,7 @@ export async function getHighestLiquidityV3USDPool(
 export function getGasCostInUSD(
   usdPool: Pool,
   costNativeCurrency: CurrencyAmount<Token>
-) {
+): CurrencyAmount<Token> {
   const nativeCurrency = costNativeCurrency.currency;
   // convert fee into usd
   const nativeTokenPrice =
@@ -205,7 +208,7 @@ export async function getGasCostInQuoteToken(
   quoteToken: Token,
   nativePool: Pool | Pair,
   costNativeCurrency: CurrencyAmount<Token>
-) {
+): Promise<CurrencyAmount<Token>> {
   const nativeTokenPrice =
     nativePool.token0.address == quoteToken.address
       ? nativePool.token1Price
