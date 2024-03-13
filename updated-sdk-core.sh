@@ -8,23 +8,24 @@ yarn set version 1.22.19
 yarn install
 yarn build
 echo '---installed and build sdk-core---'
-cd ../sdk-core-4.2.0
-
-yarn install
-yarn build
-echo '---installed and build sdk-core-4.2.0---'
 
 sleep 4
 
 # Step 2: install and build router-sdk
-cd ../router-sdk
+nvm use 18.12.1
+yarn set version 3.2.3
+
+cd ../smart-order-router
 yarn install
 yarn build
-echo '---installed and build router-sdk---'
+echo '---installed and build smart-order-router---'
 
 sleep 4
 
 # Step 3: install and build universal-router-sdk
+nvm use 16
+yarn set version 1.22.19
+
 cd ../universal-router-sdk
 yarn install
 yarn build
