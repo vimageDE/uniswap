@@ -46,6 +46,7 @@ import {
   USDT_OPTIMISM_GOERLI,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
+  WBTC_HARDHAT,
   WBTC_MAINNET,
   WBTC_MOONBEAM,
   WBTC_OPTIMISM,
@@ -174,7 +175,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BNB]: [DAI_BNB, USDC_BNB, USDT_BNB],
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
-  [ChainId.HARDHAT]: [USDC_HARDHAT],
+  [ChainId.HARDHAT]: [USDC_HARDHAT, WBTC_HARDHAT],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {

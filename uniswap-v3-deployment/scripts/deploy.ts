@@ -37,7 +37,6 @@ async function main(): Promise<void> {
   const balance = await mockUsdc.balanceOf(deployer.address);
   console.log('USDC balance: ', balance);
   console.log('MockUSDC address:', mockUsdc.address);
-  console.log('Minted USDC to:', await deployer.getAddress());
   const mockBtc_factory = await ethers.getContractFactory('MockERC20', deployer);
   const mockBtc = await mockBtc_factory.deploy('Wrapped BTC', 'WBTC', 8, ethers.utils.parseUnits('10000', 8));
   console.log('MockBTC address:', mockBtc.address);

@@ -547,6 +547,14 @@ export const USDC_HARDHAT = new Token(
   'USD//C'
 );
 
+export const WBTC_HARDHAT = new Token(
+  ChainId.HARDHAT,
+  '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
+  8,
+  'WBTC',
+  'Wrapped BTC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,

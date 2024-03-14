@@ -85,7 +85,7 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
     case 31337:
       return ChainId.HARDHAT;
     default:
-      throw new Error(`Unknown chain id: ${id}`);
+      throw new Error(`Unknown chain id: ${id} - ID_TO_CHAIN_ID`);
   }
 };
 
@@ -119,6 +119,7 @@ export enum NativeCurrencyName {
   MOONBEAM = 'GLMR',
   BNB = 'BNB',
   AVALANCHE = 'AVAX',
+  HARDHAT = 'ETH',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -177,6 +178,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.HARDHAT]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -196,6 +202,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.BNB]: NativeCurrencyName.BNB,
   [ChainId.AVALANCHE]: NativeCurrencyName.AVALANCHE,
   [ChainId.BASE]: NativeCurrencyName.ETHER,
+  [ChainId.HARDHAT]: NativeCurrencyName.HARDHAT,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -234,8 +241,10 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BASE;
     case 84531:
       return ChainName.BASE_GOERLI;
+    case 31337:
+      return ChainName.HARDHAT;
     default:
-      throw new Error(`Unknown chain id: ${id}`);
+      throw new Error(`Unknown chain id: ${id} - ID_TO_NETWORK_NAME`);
   }
 };
 
@@ -273,6 +282,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_AVALANCHE!;
     case ChainId.BASE:
       return process.env.JSON_RPC_PROVIDER_BASE!;
+    case ChainId.HARDHAT:
+      return 'http://127.0.0.1:8545/';
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -423,10 +434,34 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   ),
 };
 
+function isHardhat(chainId: number): chainId is ChainId.HARDHAT {
+  return chainId === ChainId.HARDHAT;
+}
+
 function isMatic(
   chainId: number
 ): chainId is ChainId.POLYGON | ChainId.POLYGON_MUMBAI {
   return chainId === ChainId.POLYGON_MUMBAI || chainId === ChainId.POLYGON;
+}
+
+class HardhatNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId;
+  }
+
+  get wrapped(): Token {
+    if (!isHardhat(this.chainId)) throw new Error('Not hardhat');
+    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+    if (nativeCurrency) {
+      return nativeCurrency;
+    }
+    throw new Error(`Does not support this chain ${this.chainId}`);
+  }
+
+  public constructor(chainId: number) {
+    if (!isHardhat(chainId)) throw new Error('Not hardhat');
+    super(chainId, 18, 'WETH', 'Wrapped Ether');
+  }
 }
 
 class MaticNativeCurrency extends NativeCurrency {
@@ -596,7 +631,9 @@ export function nativeOnChain(chainId: number): NativeCurrency {
   if (cachedNativeCurrency[chainId] != undefined) {
     return cachedNativeCurrency[chainId]!;
   }
-  if (isMatic(chainId)) {
+  if (isHardhat(chainId)) {
+    cachedNativeCurrency[chainId] = new HardhatNativeCurrency(chainId);
+  } else if (isMatic(chainId)) {
     cachedNativeCurrency[chainId] = new MaticNativeCurrency(chainId);
   } else if (isCelo(chainId)) {
     cachedNativeCurrency[chainId] = new CeloNativeCurrency(chainId);

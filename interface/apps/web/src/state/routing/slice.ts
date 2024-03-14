@@ -111,6 +111,7 @@ export const routingApi = createApi({
         logSwapQuoteRequest(args.tokenInChainId, args.routerPreference, false)
         const quoteStartMark = performance.mark(`quote-fetch-start-${Date.now()}`)
         try {
+          console.log('query quote from api - 0')
           const {
             tokenInAddress: tokenIn,
             tokenInChainId,
@@ -121,7 +122,7 @@ export const routingApi = createApi({
             sendPortionEnabled,
             gatewayDNSUpdateEnabled,
           } = args
-
+          console.log('query quote from api - 1')
           const requestBody = {
             tokenInChainId,
             tokenIn,
@@ -134,7 +135,7 @@ export const routingApi = createApi({
               args.routerPreference === INTERNAL_ROUTER_PREFERENCE_PRICE ? QuoteIntent.Pricing : QuoteIntent.Quote,
             configs: getRoutingAPIConfig(args),
           }
-
+          console.log('query quote from api - 2')
           const baseURL = gatewayDNSUpdateEnabled ? UNISWAP_GATEWAY_DNS_URL : UNISWAP_API_URL
           const response = await fetch({
             method: 'POST',
@@ -144,9 +145,10 @@ export const routingApi = createApi({
               'x-request-source': 'uniswap-web',
             },
           })
-
+          console.log('query quote from api - 3')
           if (response.error) {
             try {
+              console.log('handle query error - 0 ', response.error)
               // cast as any here because we do a runtime check on it being an object before indexing into .errorCode
               const errorData = response.error.data as { errorCode?: string; detail?: string }
               // NO_ROUTE should be treated as a valid response to prevent retries.
@@ -164,6 +166,7 @@ export const routingApi = createApi({
                 }
               }
             } catch {
+              console.log('No Response from api - 0')
               throw response.error
             }
           }
@@ -178,17 +181,23 @@ export const routingApi = createApi({
             }`
           )
         }
-
+        console.log('Please show up')
         try {
           const { getRouter, getClientSideQuote } = await import('lib/hooks/routing/clientSideSmartOrderRouter')
+          console.log('Try to get quote - 0 - with chainId: ', args.tokenInChainId)
           const router = getRouter(args.tokenInChainId)
+          console.log('Try to get quote - 1')
           const quoteResult = await getClientSideQuote(args, router, CLIENT_PARAMS)
+          console.log('Try to get quote - 2')
           if (quoteResult.state === QuoteState.SUCCESS) {
+            console.log('Try to get quote - 3')
             const trade = await transformQuoteToTrade(args, quoteResult.data, QuoteMethod.CLIENT_SIDE_FALLBACK)
+            console.log('Try to get quote - 4')
             return {
               data: { ...trade, latencyMs: getQuoteLatencyMeasure(quoteStartMark).duration },
             }
           } else {
+            console.log('Try to get quote - 5')
             return { data: { ...quoteResult, latencyMs: getQuoteLatencyMeasure(quoteStartMark).duration } }
           }
         } catch (error: any) {

@@ -5,19 +5,18 @@ cd sdk-core
 nvm use 16
 yarn set version 1.22.19
 
-yarn install
-yarn build
+npm install
+npm run build
 echo '---installed and build sdk-core---'
 
 sleep 4
 
-# Step 2: install and build router-sdk
+# Step 2: install and build smart-order-router
 nvm use 18.12.1
-yarn set version 3.2.3
 
 cd ../smart-order-router
-yarn install
-yarn build
+npm install
+npm run build
 echo '---installed and build smart-order-router---'
 
 sleep 4

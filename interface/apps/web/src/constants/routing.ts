@@ -78,8 +78,8 @@ export const COMMON_BASES: ChainCurrencyList = {
   ],
   [ChainId.HARDHAT]: [
     nativeOnChain(ChainId.HARDHAT),
-    USDC_HARDHAT,
     WBTC_Hardhat,
+    USDC_HARDHAT,
     LINK_Hardhat,
     WRAPPED_NATIVE_CURRENCY[ChainId.HARDHAT] as Token,
   ],
