@@ -101,7 +101,7 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // hardhat
   [31337]: {
-    router: '0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1',
+    router: '0x59b670e9fA9D0A427751Af201D676719a970857b',
     weth: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
     creationBlock: 33,
   },

@@ -37,6 +37,12 @@ cd ../interface
 nvm use 18.12.1
 yarn set version 3.2.3
 
+rm -rf node_modules
+cd apps/web
+rm -rf node_modules
+cd ../..
+
+yarn cache clean
 yarn install
 echo '---installed interface---'
 yarn g:build

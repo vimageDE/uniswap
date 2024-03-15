@@ -13694,7 +13694,7 @@ __metadata:
 
 "@uniswap/sdk-core@file:../sdk-core::locator=universe%40workspace%3A.":
   version: 4.1.3
-  resolution: "@uniswap/sdk-core@file:../sdk-core#../sdk-core::hash=717e15&locator=universe%40workspace%3A."
+  resolution: "@uniswap/sdk-core@file:../sdk-core#../sdk-core::hash=b7f839&locator=universe%40workspace%3A."
   dependencies:
     "@ethersproject/address": ^5.0.2
     big.js: ^5.2.2
@@ -13702,13 +13702,13 @@ __metadata:
     jsbi: ^3.1.4
     tiny-invariant: ^1.1.0
     toformat: ^2.0.0
-  checksum: 9561afd3910a12630d5b1f6e7bdb55c767bac17d478c27c98115d2766dcf25830e305a3134aacc20e3f9eeb32120ad7c11b98217b59f4b217c163fcf5b80ef71
+  checksum: fee0df7f54bbced69aa17d30dfbff58821af70b35b4a8bbcee21459edd0de84a37f67125e5b28af74021992c2220f3025feb4ce4779d0996e2a225e98b459f6a
   languageName: node
   linkType: hard
 
 "@uniswap/smart-order-router@file:../../../smart-order-router::locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb":
   version: 3.17.3
-  resolution: "@uniswap/smart-order-router@file:../../../smart-order-router#../../../smart-order-router::hash=b24b94&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
+  resolution: "@uniswap/smart-order-router@file:../../../smart-order-router#../../../smart-order-router::hash=442012&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
   dependencies:
     "@uniswap/default-token-list": ^11.2.0
     "@uniswap/permit2-sdk": ^1.2.0
@@ -13734,7 +13734,7 @@ __metadata:
     stats-lite: ^2.2.0
   peerDependencies:
     jsbi: ^3.2.0
-  checksum: c97093748f15b9b12abc097fc1c181370af66204b4e3a7c82873e835d21c9815383140baeeb6f1d292c6947a9093e4537577d07006086d08230e9b45ff8648f5
+  checksum: 51f9d38f1dc2a364acf0747b8b6bc2771abf61e5f0e8939b48c40064ff9788712c54e1ddee7bcd4e8a77bb73c0d1a16d0fce743141655ebea222bfe1bb234b5b
   languageName: node
   linkType: hard
 
@@ -13774,7 +13774,7 @@ __metadata:
 
 "@uniswap/universal-router-sdk@file:../../../universal-router-sdk::locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb":
   version: 1.7.1
-  resolution: "@uniswap/universal-router-sdk@file:../../../universal-router-sdk#../../../universal-router-sdk::hash=334199&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
+  resolution: "@uniswap/universal-router-sdk@file:../../../universal-router-sdk#../../../universal-router-sdk::hash=12a5dc&locator=%40uniswap%2Finterface%40workspace%3Aapps%2Fweb"
   dependencies:
     "@uniswap/permit2-sdk": ^1.2.0
     "@uniswap/router-sdk": ^1.8.0
@@ -13784,7 +13784,7 @@ __metadata:
     "@uniswap/v3-sdk": ^3.10.1
     bignumber.js: ^9.0.2
     ethers: ^5.3.1
-  checksum: 93d41bca00d579e069111f4b213371dd1b7e7f9a9624d4ffde0dffb1fe147cdc71a7ea083dcd26339ecbb86869a9ab3edb2ffb1300e00c6ce0bdf9cfd67470ff
+  checksum: 2737b7490f0ba94deb01060e058d434651f356b194b1cd97954415cc6044d5c4850df5cc7b7a2974a4fea493ec9fd9c1e029875fe5b2afd3448001446fb08843
   languageName: node
   linkType: hard
 
