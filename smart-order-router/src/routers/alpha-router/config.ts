@@ -6,6 +6,30 @@ export const DEFAULT_ROUTING_CONFIG_BY_CHAIN = (
   chainId: ChainId
 ): AlphaRouterConfig => {
   switch (chainId) {
+    case ChainId.HARDHAT:
+      return {
+        v2PoolSelection: {
+          topN: 0,
+          topNDirectSwaps: 0,
+          topNTokenInOut: 0,
+          topNSecondHop: 0,
+          topNWithEachBaseToken: 0,
+          topNWithBaseToken: 0,
+        },
+        v3PoolSelection: {
+          topN: 2,
+          topNDirectSwaps: 2,
+          topNTokenInOut: 3,
+          topNSecondHop: 1,
+          topNWithEachBaseToken: 3,
+          topNWithBaseToken: 5,
+        },
+        maxSwapsPerPath: 3,
+        minSplits: 1,
+        maxSplits: 7,
+        distributionPercent: 5,
+        forceCrossProtocol: false,
+      };
     // Optimism
     case ChainId.OPTIMISM:
     case ChainId.OPTIMISM_GOERLI:
