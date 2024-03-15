@@ -90,7 +90,7 @@ export type BuildOnChainGasModelFactoryType = {
   pools: LiquidityCalculationPools;
   amountToken: Token;
   quoteToken: Token;
-  v2poolProvider: IV2PoolProvider;
+  v2poolProvider: IV2PoolProvider | null;
   l2GasDataProvider?:
     | IL2GasDataProvider<OptimismGasData>
     | IL2GasDataProvider<ArbitrumGasData>;

@@ -1087,6 +1087,8 @@ export class AlphaRouter
 
     const gasPriceWei = await this.getGasPriceWei();
 
+    console.log('route - 0 - ', amount);
+    console.log('route - 0 - ', amount.currency);
     const quoteToken = quoteCurrency.wrapped;
     const providerConfig: ProviderConfig = {
       ...routingConfig,
@@ -1098,14 +1100,14 @@ export class AlphaRouter
       ),
     };
 
-    console.log('route - 0 - ', quoteToken);
+    console.log('route - 1 - ', quoteToken);
     const [v3GasModel, mixedRouteGasModel] = await this.getGasModels(
       gasPriceWei,
       amount.currency.wrapped,
       quoteToken,
       providerConfig
     );
-    console.log('route - 1');
+    console.log('route - 2');
 
     // Create a Set to sanitize the protocols input, a Set of undefined becomes an empty set,
     // Then create an Array from the values of that Set.
@@ -1979,76 +1981,91 @@ export class AlphaRouter
   ): Promise<
     [IGasModel<V3RouteWithValidQuote>, IGasModel<MixedRouteWithValidQuote>]
   > {
-    const beforeGasModel = Date.now();
+    try {
+      const beforeGasModel = Date.now();
 
-    const usdPoolPromise = getHighestLiquidityV3USDPool(
-      this.chainId,
-      this.v3PoolProvider,
-      providerConfig
-    );
-    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
-    const nativeQuoteTokenV3PoolPromise = !quoteToken.equals(nativeCurrency)
-      ? getHighestLiquidityV3NativePool(
-          quoteToken,
-          this.v3PoolProvider,
-          providerConfig
-        )
-      : Promise.resolve(null);
-    const nativeAmountTokenV3PoolPromise = !amountToken.equals(nativeCurrency)
-      ? getHighestLiquidityV3NativePool(
-          amountToken,
-          this.v3PoolProvider,
-          providerConfig
-        )
-      : Promise.resolve(null);
-
-    const [usdPool, nativeQuoteTokenV3Pool, nativeAmountTokenV3Pool] =
-      await Promise.all([
-        usdPoolPromise,
-        nativeQuoteTokenV3PoolPromise,
-        nativeAmountTokenV3PoolPromise,
-      ]);
-
-    const pools: LiquidityCalculationPools = {
-      usdPool: usdPool,
-      nativeQuoteTokenV3Pool: nativeQuoteTokenV3Pool,
-      nativeAmountTokenV3Pool: nativeAmountTokenV3Pool,
-    };
-
-    const v3GasModelPromise = this.v3GasModelFactory.buildGasModel({
-      chainId: this.chainId,
-      gasPriceWei,
-      pools,
-      amountToken,
-      quoteToken,
-      v2poolProvider: this.v2PoolProvider,
-      l2GasDataProvider: this.l2GasDataProvider,
-      providerConfig: providerConfig,
-    });
-
-    const mixedRouteGasModelPromise =
-      this.mixedRouteGasModelFactory.buildGasModel({
+      const usdPoolPromise = getHighestLiquidityV3USDPool(
+        this.chainId,
+        this.v3PoolProvider,
+        providerConfig
+      );
+      const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+      console.log('getGasModels - 0 -');
+      const nativeQuoteTokenV3PoolPromise = !quoteToken.equals(nativeCurrency)
+        ? getHighestLiquidityV3NativePool(
+            quoteToken,
+            this.v3PoolProvider,
+            providerConfig
+          )
+        : Promise.resolve(null);
+      console.log('getGasModels - 1 -');
+      const nativeAmountTokenV3PoolPromise = !amountToken.equals(nativeCurrency)
+        ? getHighestLiquidityV3NativePool(
+            amountToken,
+            this.v3PoolProvider,
+            providerConfig
+          )
+        : Promise.resolve(null);
+      console.log('getGasModels - 2 -');
+      const [usdPool, nativeQuoteTokenV3Pool, nativeAmountTokenV3Pool] =
+        await Promise.all([
+          usdPoolPromise,
+          nativeQuoteTokenV3PoolPromise,
+          nativeAmountTokenV3PoolPromise,
+        ]);
+      console.log('getGasModels - 3 - ', nativeQuoteTokenV3Pool);
+      console.log('getGasModels - 3 - ', nativeAmountTokenV3Pool);
+      const pools: LiquidityCalculationPools = {
+        usdPool: usdPool,
+        nativeQuoteTokenV3Pool: nativeQuoteTokenV3Pool,
+        nativeAmountTokenV3Pool: nativeAmountTokenV3Pool,
+      };
+      console.log('getGasModels - 4 -');
+      const v3GasModelPromise = this.v3GasModelFactory.buildGasModel({
         chainId: this.chainId,
         gasPriceWei,
         pools,
         amountToken,
         quoteToken,
         v2poolProvider: this.v2PoolProvider,
+        l2GasDataProvider: this.l2GasDataProvider,
         providerConfig: providerConfig,
       });
+      console.log('getGasModels - 5 -', this.chainId);
+      console.log('getGasModels - 5 -', gasPriceWei);
+      console.log('getGasModels - 5 -', pools);
+      console.log('getGasModels - 5 -', amountToken);
+      console.log('getGasModels - 5 -', quoteToken);
+      console.log('getGasModels - 5 -', this.v2PoolProvider);
+      console.log('getGasModels - 5 -', providerConfig);
+      const mixedRouteGasModelPromise =
+        this.mixedRouteGasModelFactory.buildGasModel({
+          chainId: this.chainId,
+          gasPriceWei,
+          pools,
+          amountToken,
+          quoteToken,
+          v2poolProvider: null, // this.v2PoolProvider : null,
+          providerConfig: providerConfig,
+        });
 
-    const [v3GasModel, mixedRouteGasModel] = await Promise.all([
-      v3GasModelPromise,
-      mixedRouteGasModelPromise,
-    ]);
+      const [v3GasModel, mixedRouteGasModel] = await Promise.all([
+        v3GasModelPromise,
+        mixedRouteGasModelPromise,
+      ]);
+      console.log('getGasModels - 6 -');
 
-    metric.putMetric(
-      'GasModelCreation',
-      Date.now() - beforeGasModel,
-      MetricLoggerUnit.Milliseconds
-    );
+      metric.putMetric(
+        'GasModelCreation',
+        Date.now() - beforeGasModel,
+        MetricLoggerUnit.Milliseconds
+      );
 
-    return [v3GasModel, mixedRouteGasModel];
+      return [v3GasModel, mixedRouteGasModel];
+    } catch (error) {
+      console.error('Error in getGasModels:', error);
+      throw error;
+    }
   }
 
   // Note multiplications here can result in a loss of precision in the amounts (e.g. taking 50% of 101)
