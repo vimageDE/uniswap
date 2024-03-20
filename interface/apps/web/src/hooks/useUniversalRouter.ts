@@ -81,6 +81,9 @@ export function useUniversalRouterSwapCallback(
           flatFee: options.flatFeeOptions,
         })
 
+        console.log('This is where h1 fee needs to be implemented!')
+        console.log('Provider: ', await provider.getBlockNumber())
+
         const tx = {
           from: account,
           to: UNIVERSAL_ROUTER_ADDRESS(chainId),
@@ -91,6 +94,7 @@ export function useUniversalRouterSwapCallback(
 
         let gasEstimate: BigNumber
         try {
+          console.log('estimate gas with TX: ', tx)
           gasEstimate = await provider.estimateGas(tx)
         } catch (gasError) {
           setTraceStatus('failed_precondition')

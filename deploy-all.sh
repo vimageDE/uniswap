@@ -25,12 +25,17 @@ cd ../deterministic-deployment-proxy;
 sleep 10; # Wait for CREATE2 to be deployed
 
 # Step 5: Deploy Universal Router contract
-echo 'Deploying Universal Router contract...';
-cd ../universal-router
+echo 'Deploying PERMIT2...';
+cd ../universal-router/permit2
 nvm use 16
 yarn set version 1.22.19
+forge script --broadcast \
+--rpc-url http://127.0.0.1:8545/ \
+--private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
+script/DeployPermit2.s.sol:DeployPermit2
 
-# forge create --rpc-url http://127.0.0.1:8545/ --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 script/deployParameters/DeployHardhat.s.sol:DeployHardhat
+cd ..
+echo 'Deploying Universal Router contract...';
 forge script --broadcast \
 --rpc-url http://127.0.0.1:8545/ \
 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \

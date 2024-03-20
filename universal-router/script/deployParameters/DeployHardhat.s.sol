@@ -7,7 +7,7 @@ import {RouterParameters} from 'contracts/base/RouterImmutables.sol';
 contract DeployHardhat is DeployUniversalRouter {
     function setUp() public override {
         params = RouterParameters({
-            permit2: address(0),
+            permit2: 0x000000000022D473030F116dDEE9F6B43aC78BA3,
             weth9: 0x5FbDB2315678afecb367f032d93F642f64180aa3,
             seaportV1_5: UNSUPPORTED_PROTOCOL,
             seaportV1_4: UNSUPPORTED_PROTOCOL,
